@@ -20,7 +20,7 @@ export function Home(){
     useEffect(() => {
         const fetchItem = async () => {
           try {
-            const response = await fetch("http://localhost:4000/categories", {
+            const response = await fetch("https://w19-router-production.up.railway.app/categories", {
                 headers:{
                     "authorization": `Bearer ${localStorage.getItem("token")}`
                 }
@@ -38,7 +38,7 @@ export function Home(){
         navigate(`/edit/${id}`)
       }
       const deleteButton = async (id:string)=>{
-        const response = await fetch(`http://localhost:4000/categories/${id}`, {
+        const response = await fetch(`https://w19-router-production.up.railway.app/categories/${id}`, {
           method:"DELETE",
           headers:{
               "authorization": `Bearer ${localStorage.getItem("token")}`,

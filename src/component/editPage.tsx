@@ -10,7 +10,7 @@ export function EditPage(){
     useEffect(() => {
         const fetchItem = async () => {
           try {
-            const response = await fetch(`http://localhost:4000/categories/${id}`, {
+            const response = await fetch(`https://w19-router-production.up.railway.app/categories/${id}`, {
                 method:"GET",
                 headers:{
                     "authorization": `Bearer ${localStorage.getItem("token")}`
@@ -41,7 +41,7 @@ export function EditPage(){
       const handleClick = async () =>{
         try {
             console.log(id)
-            const response = await fetch(`http://localhost:4000/categories/${id}`, {
+            const response = await fetch(`https://w19-router-production.up.railway.app/categories/${id}`, {
                 method:"PATCH",
                 headers:{
                     "authorization": `Bearer ${localStorage.getItem("token")}`,

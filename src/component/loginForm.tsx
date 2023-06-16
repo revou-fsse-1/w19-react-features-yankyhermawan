@@ -21,7 +21,7 @@ export function LoginForm() {
         e.preventDefault()
 
         try{
-            const response = await fetch("http://localhost:4000/user/login",{
+            const response = await fetch("https://w19-router-production.up.railway.app/user/login",{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json"

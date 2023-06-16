@@ -26,7 +26,7 @@ export function NewPage(){
         }))
       }
     const handleClick = async ()=>{
-        const response = await fetch ("http://localhost:4000/categories",{
+        const response = await fetch ("https://w19-router-production.up.railway.app/categories",{
             method:"POST",
             headers:{
                 "Content-Type": "application/json",

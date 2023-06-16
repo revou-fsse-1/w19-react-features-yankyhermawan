@@ -19,7 +19,7 @@ export function RegisterForm() {
 		e.preventDefault();
 
 		try {
-			const response = await fetch("http://localhost:4000/user/register", {
+			const response = await fetch("https://w19-router-production.up.railway.app/user/register", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
