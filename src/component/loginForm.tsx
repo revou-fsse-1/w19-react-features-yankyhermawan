@@ -1,8 +1,12 @@
-import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { ChangeEvent, useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext, UserContextType } from "../App";
+
 export function LoginForm() {
+	const {setUser} = useContext<UserContextType>(UserContext)
+    const navigate = useNavigate()
 	const [input, setInput] = useState({
-		email: "",
+		username: "",
 		password: "",
 	});
 
@@ -13,17 +17,40 @@ export function LoginForm() {
 		}));
 	};
 
+    const handleSubmit = async (e: React.SyntheticEvent):Promise<void> =>{
+        e.preventDefault()
+
+        try{
+            const response = await fetch("http://localhost:4000/user/login",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: input.username,
+                    password: input.password
+                })
+            })
+            const data = await response.json()
+            setUser(input.username)
+			localStorage.setItem("token", data)
+            navigate("/")
+        }catch(e){
+            console.error(e)
+        }
+    }
+
 	return (
 		<div className="flex h-screen justify-center items-center">
 			<div className=" border-[1px] border-black border-solid px-4 py-6 text-xl">
 				<p>Please Login to Continue</p>
-				<form className="flex flex-col mt-6 gap-4">
+				<form className="flex flex-col mt-6 gap-4" onSubmit={handleSubmit}>
 					<input
 						type="text"
-						placeholder="Email"
+						placeholder="Username"
 						className="border-[1px] border-black border-solid p-2"
-						name="email"
-						value={input.email}
+						name="username"
+						value={input.username}
 						onChange={handleInput}
 					/>
 					<input
